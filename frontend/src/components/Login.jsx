@@ -34,7 +34,9 @@ const Login = ({onSubmit, onSwitchMode}) => {
 
           try{
 
-              const {data} = await axios.get(`${url}/api/user/me`, {
+              // const {data} = await axios.get(`${url}/api/user/me`, {
+
+              const { data } = await axios.get("https://task-manager-app-vlcr.onrender.com/api/user/me", {
                 headers: {Authorization: `Bearer ${token}`},
               })
 
@@ -79,7 +81,9 @@ const Login = ({onSubmit, onSwitchMode}) => {
 
       try{
 
-         const {data} = await axios.post(`${url}/api/user/login`,formData)
+         // const {data} = await axios.post(`${url}/api/user/login`,formData)
+          const { data } = await axios.post("https://task-manager-app-vlcr.onrender.com/api/user/login", formData);
+
          if(!data.token) throw new Error(data.message || "Login failed") 
 
           localStorage.setItem("token", data.token)
