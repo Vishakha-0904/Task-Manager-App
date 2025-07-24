@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-import { Routes, Route, Outlet, useNavigate } from 'react-router-dom';
+import { Routes, Route, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Dashboard from './pages/Dashboard';
+import PendingPage from './pages/PendingPage';
+import CompletePage from './pages/CompletePage';
+import Profile from './components/Profile';
+
 
 
 
@@ -45,15 +50,7 @@ function App() {
     
   }
   
-    //  const ProtectedLayout = () =>{
-    //   <Layout user={currentUser} onLogout= {handleLogout}>
-
-    //     <Outlet/>
-
-    //   </Layout>
-    //  }
-
-
+    
     const ProtectedLayout = () => {
   return (
     <Layout user={currentUser} onLogout={handleLogout}>
@@ -67,46 +64,53 @@ function App() {
   return (
     <Routes>
 
-      {/* <Route path='/login' element={<div className='fixed insert-0 bg-black bg-opacity-50 flex items-center justify-center'>
+     
 
-        <Login onSubmit={handleAuthSubmit} onSwitchMode={() => navigate('/signup')}/>
-
-      </div>}/> */}
-
-      <Route path='/signup' element={
+      <Route path='/login' element={
       <div className='fixed inset-0 min-h-screen bg-black bg-opacity-50 flex items-center justify-center'>
-           <SignUp onSubmit={handleAuthSubmit} onSwitchMode={() => navigate('/login')} />
+           <Login onSubmit={handleAuthSubmit} onSwitchMode={() => navigate('/signup')} />
       </div>
        } />
 
-      <Route path='/' element={<Layout/>}/>
+     
 
 
 
-      {/* <Route path='/signup' element={<div className='fixed insert-0 bg-black bg-opacity-50 flex items-center justify-center'>
-
-        <SignUp onSubmit={handleAuthSubmit} onSwitchMode={() => navigate('/login')}/>
-
-      </div>}/> */}
-
-      {/* <Route path='/login' element={
-      <div className='fixed inset-0 min-h-screen bg-black bg-opacity-50 flex items-center justify-center'>
-          <Login onSubmit={handleAuthSubmit} onSwitchMode={() => navigate('/signup')} />
-      </div>
-       } /> */}
-
-
-
-       <Route path='/login' element={
+       <Route path='/signup' element={
        <div className='fixed inset-0 min-h-screen bg-black bg-opacity-50 flex items-center justify-center'>
-              <Login onSubmit={handleAuthSubmit} onSwitchMode={() => navigate('/signup')} />
+              <SignUp onSubmit={handleAuthSubmit} onSwitchMode={() => navigate('/login')} />
        </div>
        } />
 
 
-      {/* <Route path='/' element={<Layout/>}/> */}
+        
+        <Route element={currentUser ? <ProtectedLayout/>:
+            <Navigate to='/login' replace/>}>
+            <Route path='/' element={<Dashboard/>}/>
 
-    </Routes>
+
+
+          <Route path='/pending' element={<PendingPage/>}/>
+          <Route path='/complete' element={<CompletePage/>}/>
+          <Route path='/profile' element={<Profile user={currentUser} setCurrentUser={setCurrentUser} onLogout={handleLogout}/>}/>
+          
+
+            
+            
+            
+
+
+2
+        </Route>
+        <Route path='*' element={<Navigate to={currentUser ? '/' : '/login'} replace/>}/>
+
+
+
+
+
+      
+
+  </Routes>
   )
 }
 

@@ -26,7 +26,6 @@ const Layout = ({onLogout,user}) => {
         const token = localStorage.getItem('token')
         if(!token) throw new Error("No auth token found")
 
-        // const {data } = await axios.get("http://localhost:4000/api/user/gp",{
         const {data} = await axios.get("http://localhost:4000/api/tasks/gp", {
 
             
@@ -177,7 +176,8 @@ const Layout = ({onLogout,user}) => {
                             <StatCard title='Pending' value={stats.pendingCount} icon={<Circle className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-fuchsia-500'/>}/>
 
 
-                            <StatCard title='Completion Rate' value={`${stats.totalCount} %`} icon={<Zap className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500'/>}/>
+                            <StatCard title='Completion Rate' value={`${stats.completionPercentage} %`} icon={<Zap className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500'/>} />
+
 
                         </div>
 
