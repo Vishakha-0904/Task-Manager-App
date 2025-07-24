@@ -65,8 +65,12 @@ const [taskData, setTaskData] = useState(DEFAULT_TASK)
 
         try{
            
-             const isEdit = Boolean(taskData.id);
-             const url = isEdit ? `${API_BASE}/${taskData.id}/gp` : `${API_BASE}/gp`;
+             // const isEdit = Boolean(taskData.id);
+             // const url = isEdit ? `${API_BASE}/${taskData.id}/gp` : `${API_BASE}/gp`;
+            const url = isEdit 
+  ? `${API_BASE}/api/tasks/${taskData.id}/gp` 
+  : `${API_BASE}/api/tasks/gp`;
+
              const resp = await fetch(url, {
                 method: isEdit ? 'PUT' : 'POST',
                 headers: getHeaders(),
