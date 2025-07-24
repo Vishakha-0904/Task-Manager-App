@@ -7,7 +7,7 @@ import axios from 'axios'
 
 // const API_URL = 'http://localhost:4000'
 
-const API_URL = "https://task-manager-app-vlcr.onrender.com"
+const API_URL = 'https://task-manager-app-vlcr.onrender.com'
 
 const Profile = ({ setCurrentUser, onLogout }) => {
   const [Profile, setProfile] = useState({ name: '', email: '' })
