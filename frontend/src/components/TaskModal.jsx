@@ -4,7 +4,8 @@ import { Save, PlusCircle, X, AlignLeft, Calendar, Flag, CheckCircle } from 'luc
 
 
 
-const API_BASE = 'http://localhost:4000/api/tasks'
+// const API_BASE = 'http://localhost:4000/api/tasks'
+const API_BASE = 'https://task-manager-app-vlcr.onrender.com'
 
 const TaskModal = ({isOpen, onClose, taskToEdit, onSave, onLogout}) => {
 
