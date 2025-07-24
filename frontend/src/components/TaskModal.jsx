@@ -4,8 +4,7 @@ import { Save, PlusCircle, X, AlignLeft, Calendar, Flag, CheckCircle } from 'luc
 
 
 
-// const API_BASE = 'http://localhost:4000/api/tasks'
-const API_BASE = 'https://task-manager-app-vlcr.onrender.com'
+const API_BASE = 'https://task-manager-app-vlcr.onrender.com/api/tasks'
 
 const TaskModal = ({isOpen, onClose, taskToEdit, onSave, onLogout}) => {
 
@@ -65,12 +64,8 @@ const [taskData, setTaskData] = useState(DEFAULT_TASK)
 
         try{
            
-             // const isEdit = Boolean(taskData.id);
-             // const url = isEdit ? `${API_BASE}/${taskData.id}/gp` : `${API_BASE}/gp`;
-            const url = isEdit 
-  ? `${API_BASE}/api/tasks/${taskData.id}/gp` 
-  : `${API_BASE}/api/tasks/gp`;
-
+             const isEdit = Boolean(taskData.id);
+             const url = isEdit ? `${API_BASE}/${taskData.id}/gp` : `${API_BASE}/gp`;
              const resp = await fetch(url, {
                 method: isEdit ? 'PUT' : 'POST',
                 headers: getHeaders(),
